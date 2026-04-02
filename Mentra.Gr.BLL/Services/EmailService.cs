@@ -17,17 +17,14 @@ namespace Mentra.Gr.BLL.Services
             mail.To.Add(to);
             mail.Subject = subject;
             mail.Body = message;
-            mail.IsBodyHtml = false;
+            mail.IsBodyHtml = true;
 
-            mail.From = new MailAddress("your_email@gmail.com");
+            mail.From = new MailAddress("ahmedsabry010oggy@gmail.com");
 
-            var smtp = new SmtpClient("smtp.gmail.com")
-            {
-                Port = 587,
-                Credentials = new NetworkCredential("your_email@gmail.com", "your_app_password"),
-                EnableSsl = true
-            };
+            var smtp = new SmtpClient("smtp.gmail.com", 587);
 
+            smtp.Credentials = new NetworkCredential("ahmedsabry010oggy@gmail.com", "fxqmxaamwsvixvmd");
+            smtp.EnableSsl = true;
             await smtp.SendMailAsync(mail);
         }
 

@@ -14,7 +14,7 @@ namespace Mentra.Gr.BLL.Interfaces.Auth
 
         Task<bool> CheckEmailExistAsync(string email);
 
-        Task<bool> SendOtpAsync(string email);
+        Task<bool> SendOtpAsync(EmailRequestDto request);
         Task<bool> VerifyOtpAsync(string email, string otp);
         Task<bool> ResetPasswordAsync(string email, string newPassword);
     }

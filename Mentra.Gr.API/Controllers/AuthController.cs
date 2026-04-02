@@ -47,9 +47,9 @@ namespace Mentra.Gr.API.Controllers
 
 
         [HttpPost("forgot-password")]
-        public async Task<IActionResult> ForgotPassword([FromBody] string email)
+        public async Task<IActionResult> ForgotPassword([FromBody] EmailRequestDto request)
         {
-            var sent = await _authService.SendOtpAsync(email);
+            var sent = await _authService.SendOtpAsync(request);
             if (!sent) return BadRequest("Email not found");
 
             return Ok("OTP sent");

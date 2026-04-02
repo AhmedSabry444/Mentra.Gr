@@ -54,16 +54,16 @@ namespace Mentra.Gr.BLL.Services
         }
 
         //  OTP 
-        public async Task<bool> SendOtpAsync(string email)
+        public async Task<bool> SendOtpAsync(EmailRequestDto request)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null) return false;
 
             var otp = new Random().Next(100000, 999999).ToString();
-            _otpStore[email] = otp;
+            _otpStore[request.Email] = otp;
 
             var body = $"<h2>Your OTP Code</h2><p>Your verification code is: <b>{otp}</b></p>";
-            await _emailService.SendEmailAsync(email, "Password Reset OTP", body);
+            await _emailService.SendEmailAsync(request.Email, "Password Reset OTP", body);
 
             return true;
         }
